@@ -1,6 +1,5 @@
 <?php
 
-
 class Produto implements IProduto
 {
     private $idProd;

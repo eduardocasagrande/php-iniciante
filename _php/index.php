@@ -2,11 +2,26 @@
 
 require_once "IConn.php";
 require_once "Conn.php";
-require_once "Produto.php";
+require_once "IDao.php";
 require_once "IProduto.php";
-require_once "ServiceProduto.php";
+require_once "Produto.php";
+require_once "ProdutoDao.php";
 
-$db = new Conn("localhost","test_oo","root","");
+$db = new Conn("localhost", "test_oo", "root", "");
+$produto = new Produto;
+$produtoDao = new ProdutoDao($db);
+$servicoDao = new ServicoDao($db);
+
+
+$produtoDao->insert([
+    'teste' => 'teste'
+]);
+
+$servicoDao->insert([
+    'teste' => 'teste'
+]);
+
+print_r($produtoDao->get());
 
 
 /*
