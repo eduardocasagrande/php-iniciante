@@ -2,5 +2,5 @@
 
 interface IConn
 {
-
+    public function conexao();
 }
