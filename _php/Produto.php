@@ -1,7 +1,7 @@
 <?php
 
 
-class Produto
+class Produto implements IProduto
 {
     private $idProd;
     private $descricao;
@@ -15,6 +15,7 @@ class Produto
     public function setIdProd($idProd)
     {
         $this->idProd = $idProd;
+        return $this;
     }
 
     public function getDescricao()
@@ -25,6 +26,7 @@ class Produto
     public function setDescricao($descricao)
     {
         $this->descricao = $descricao;
+        return $this;
     }
 
     public function getValor()
@@ -35,6 +37,7 @@ class Produto
     public function setValor($valor)
     {
         $this->valor = $valor;
+        return $this;
     }
 
 

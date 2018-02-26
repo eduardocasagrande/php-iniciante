@@ -2,6 +2,9 @@
 
 require_once "IConn.php";
 require_once "Conn.php";
+require_once "Produto.php";
+require_once "IProduto.php";
+require_once "ServiceProduto.php";
 
 $db = new Conn("localhost","test_oo","root","");
 
