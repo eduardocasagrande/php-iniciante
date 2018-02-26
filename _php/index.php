@@ -1,23 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div>
-    <form method="post">
-        <input type="text" placeholder="nome" name="nome">
-        <button name="enviar" type="submit">Enviar</button>
-    </form>
-</div>
-</body>
-</html>
-
 <?php
-if (isset($_POST[ 'enviar'])) {
 
-    $nome = $_POST['nome'];
-    echo "nome: {$nome}";
+try {
+    $conn = new \PDO("mysql:host=localhost;dbname=test_oo", "root", "");
 
+    $registros = $conn->query("SELECT * FROM produtos ORDER BY descricao");
+    $produtos = $registros->fetchAll();
+    foreach ($produtos as $produto) {
+        echo $produto['descricao'];
+        echo "<br/>";
+    }
+
+} catch (\PDOException $e) {
+    echo "Ops! Ocorreu um problema inesperado..." . "<br> Message: " . $e->getMessage() . "<br> Code: " . $e->getCode();
 }
+
+try {
+    $conn = new \PDO("mysql:host=localhost;dbname=test_oo", "root", "");
+
+    $idProduto = isset($_GET['id'])
+        ? $_GET['id']
+        : 1;
+
+    $query = "SELECT * FROM produtos WHERE idProd=:idProd";
+    $registros = $conn->prepare($query);
+    $registros->bindValue(':idProd', $idProduto);
+    $registros->execute();
+
+    print_r($registros->fetchAll());
+
+} catch (\PDOException $e) {
+    echo "Ops! Ocorreu um problema inesperado..." . "<br> Message: " . $e->getMessage() . "<br> Code: " . $e->getCode();
+}
+
