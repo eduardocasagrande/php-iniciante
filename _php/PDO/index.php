@@ -1,7 +1,7 @@
 <?php
 function __autoload($classe)
 {
-    include_once "{$classe}.php";
+    include_once "index.php";
 }
 
 $db = new Conn("localhost", "test_oo", "root", "");
