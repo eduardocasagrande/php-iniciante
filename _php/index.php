@@ -1,28 +1,51 @@
 <?php
-
-require_once "IConn.php";
-require_once "Conn.php";
-require_once "IDao.php";
-require_once "IProduto.php";
-require_once "Produto.php";
-require_once "ProdutoDao.php";
+function __autoload($classe)
+{
+    include_once "{$classe}.php";
+}
 
 $db = new Conn("localhost", "test_oo", "root", "");
-$produto = new Produto;
+
+
+/*
+$produtos = [];
+$produtos[] = (new Produto())->setIdProd(9);
+$produtos[] = (new Produto())->setIdProd(8);
+*/
+
+$produtos = [];
+$produtos[] = (new Produto())->setIdProd(3);
+
 $produtoDao = new ProdutoDao($db);
-$servicoDao = new ServicoDao($db);
 
+$registros = $produtoDao->fetch("idProd = 2");
 
-$produtoDao->insert([
-    'teste' => 'teste'
+/*
+$registros = $produtoDao->fetchAll("descricao = '{$produto->getDescricao()}'");
+if (empty($registros)) {
+    $produtoDao->insert([
+        'descricao' => $produto->getDescricao(),
+        'valor' => $produto->getValor()
+    ]);
+}
+*/
+
+/*
+$produtoDao->update([
+    'descricao' => $produto->getDescricao(),
+    'valor' => $produto->getValor()
+], [
+    'idProd' => $produto->getIdProd(),
+    'descricao' => 'Smartphone Iphone 8X'
 ]);
+*/
+foreach ($produtos as $produto) {
+    $produtoDao->delete([
+        'idProd' => $produto->getIdProd()
+    ]);
+}
 
-$servicoDao->insert([
-    'teste' => 'teste'
-]);
-
-print_r($produtoDao->get());
-
+print_r(json_encode($registros));
 
 /*
     $idProduto = isset($_GET['id'])
