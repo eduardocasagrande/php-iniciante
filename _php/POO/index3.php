@@ -1,9 +1,14 @@
 <?php
 
-require_once("CIndex3.php");
+require_once("CarroIndex3.php");
+require_once("MotoIndex3.php");
 
-$fusion = new Carro();
-$civic = new Carro();
+$fusion = new Carro("Ford","Preto","180");
+echo $fusion->dados();
 
-echo $fusion->marca = "Ford";
-$fusion->cor = "Preto";
+
+
+
+
+//$gsx = new MotoIndex3('Suzuki','Preta','600');
+//echo $gsx->getDados();
