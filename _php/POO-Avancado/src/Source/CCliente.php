@@ -3,8 +3,8 @@ class Cliente{
 
     private $db;
 
-    public function __construct($db){
-        $this->db = $db;
+    public function __construct(IConexao $db){
+        $this->db = $db->conexao();
     }
 
 
